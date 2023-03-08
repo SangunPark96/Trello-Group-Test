@@ -1,4 +1,4 @@
-import hero from "../../assets/denise-jans-Lq6rcifGjOU-unsplash.jpg";
+import hero from "../../../assets/denise-jans-Lq6rcifGjOU-unsplash.jpg";
 
 export default function Home() {
   return (
