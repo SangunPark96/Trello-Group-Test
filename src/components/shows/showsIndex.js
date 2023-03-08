@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import ErrorMessage from "../errors/ErrorMessage";
+import ErrorMessage from "./errors/ErrorMessage";
 import ShowListing from "./ShowListing";
 import "./ShowsIndex.css";
 import { useState, useEffect } from "react";
@@ -12,33 +12,31 @@ function filterShows(search, shows) {
   });
 }
 export default function ShowsIndex() {
-
-  const [error, setError ] = useState(false)
-  const [shows, setShows ] = useState([])
-  const [allShows, setAllShows] = useState([]) 
-  const [searchTitle, setSearchTitle] = useState("")
+  const [error, setError] = useState(false);
+  const [shows, setShows] = useState([]);
+  const [allShows, setAllShows] = useState([]);
+  const [searchTitle, setSearchTitle] = useState("");
 
   function handleTextChange(event) {
     const title = event.target.value;
     const result = title.length ? filterShows(title, allShows) : allShows;
-  
+
     setSearchTitle(title);
     setShows(result);
-  };
+  }
 
-
-useEffect(() => {
-  getAllShows()
-  .then(response => {
-    setShows(response);
-    setAllShows(response)
-    setError(false)
-  })
-  .catch((error) => {
-    console.log(error)
-    setError(true)
-  }) 
-},[])
+  useEffect(() => {
+    getAllShows()
+      .then((response) => {
+        setShows(response);
+        setAllShows(response);
+        setError(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(true);
+      });
+  }, []);
 
   return (
     <div>
@@ -57,11 +55,13 @@ useEffect(() => {
               type="text"
               value={searchTitle}
               id="searchTitle"
-              onChange= {handleTextChange}
+              onChange={handleTextChange}
             />
           </label>
           <section className="shows-index">
-            {shows.map(show => <ShowListing key={show.id} show={show}/>)}
+            {shows.map((show) => (
+              <ShowListing key={show.id} show={show} />
+            ))}
           </section>
         </section>
       )}
