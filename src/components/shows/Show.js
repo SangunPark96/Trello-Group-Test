@@ -4,7 +4,7 @@ import { destroyShow, getOneShow } from "../../api/fetch";
 
 import "./Show.css";
 
-import ErrorMessage from "../errors/ErrorMessage";
+import ErrorMessage from "./errors/ErrorMessage";
 console.log(destroyShow);
 function Show() {
   const [show, setShow] = useState({});
